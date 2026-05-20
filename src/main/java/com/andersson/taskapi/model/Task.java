@@ -23,11 +23,14 @@ public class Task {
   @Column(name = "created_at", nullable = false)
   private LocalDateTime createAt;
 
+  private String description;
+
   public Task() {
   }
 
-  public Task(String title, Boolean completed) {
+  public Task(String title, String description, Boolean completed) {
     this.title = title;
+    this.description = description;
     this.completed = completed;
     this.createAt = LocalDateTime.now();
   }
@@ -62,6 +65,14 @@ public class Task {
 
   public void setCreateAt(LocalDateTime createAt) {
     this.createAt = createAt;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 }

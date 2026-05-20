@@ -19,12 +19,14 @@ public class TaskApiApplication {
 	public CommandLineRunner test(TaskService taskService) {
 		return args -> {
 			// Crear una tarea de prueba
-			Task tarea = new Task("Mi primera tarea", false);
-			Task guardada = taskService.createTask(tarea);
-			System.out.println("Tarea guardada con ID: " + guardada.getId());
+			// Crear tareas con títulos variados
+			taskService.createTask(new Task("Estudiar Java", "Curso Spring", false));
+			taskService.createTask(new Task("estudiar Docker", "Contenedores", false));
+			taskService.createTask(new Task("Hacer deporte", "Correr", true));
 
-			// Listar todas las tareas
-			System.out.println("Total de tareas: " + taskService.getAllTasks().size());
+			System.out.println("=== Buscando 'estudiar' (ignora mayúsculas) ===");
+			taskService.getTasksByTitleIgnoreCase("EsTuDIar")
+					.forEach(t -> System.out.println(t.getTitle() + " - " + t.getCompleted()));
 		};
 	}
 
