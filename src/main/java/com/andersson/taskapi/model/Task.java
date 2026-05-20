@@ -64,6 +64,4 @@ public class Task {
     this.createAt = createAt;
   }
 
-
-
 }
